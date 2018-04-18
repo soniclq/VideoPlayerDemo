@@ -4,9 +4,30 @@
 
     android:layout_height="match_parent">
 
-    <VideoView
-        android:id="@+id/videoplayer"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="240dp">
 
+        <VideoView
+            android:id="@+id/videoplayer"
+            android:layout_width="match_parent"
+            android:layout_height="240dp" />
+
+        <LinearLayout
+
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <SeekBar
+                android:thumb="@null"
+                android:progressDrawable="@drawable/seekbar_style2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginRight="-20dp"
+                android:max="100"
+                android:progress="20" />
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

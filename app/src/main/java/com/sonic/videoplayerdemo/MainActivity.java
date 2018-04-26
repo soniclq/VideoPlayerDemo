@@ -1,11 +1,14 @@
 package com.sonic.videoplayerdemo;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView current_time_tv, total_time_tv;
 
     public static final int UPDATE_UI = 1;
+    private int screen_width ,screen_height;
+    private RelativeLayout videoLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         total_time_tv = (TextView)findViewById(R.id.time_total_tv);
         current_time_tv = (TextView)findViewById(R.id.current_time);
         playerProgress = (SeekBar)findViewById(R.id.player_progress);
+        videoLayout = (RelativeLayout)findViewById(R.id.video_layout);
 
         playerProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -138,6 +144,32 @@ public class MainActivity extends AppCompatActivity {
                 handler.sendEmptyMessage(UPDATE_UI);
             }
         });
+        screen_width = getResources().getDisplayMetrics().widthPixels;
+        screen_height = getResources().getDisplayMetrics().heightPixels;
+        PixelUtil.init(this);
+    }
 
+
+    private  void setVideoViewScale(int width, int height){
+        ViewGroup.LayoutParams layoutParams = videoplayer.getLayoutParams();
+        layoutParams.width = width;
+        layoutParams.height = height;
+        videoplayer.setLayoutParams(layoutParams);
+
+        ViewGroup.LayoutParams layoutParams1 =  videoLayout.getLayoutParams();
+        layoutParams1.width = width;
+        layoutParams1.height = height;
+        videoLayout.setLayoutParams(layoutParams1);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        }else {
+            setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT, PixelUtil.dp2px(240));
+        }
     }
 }

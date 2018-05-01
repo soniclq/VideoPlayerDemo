@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 import android.text.TextPaint;
 
-import com.nmbb.oplayer.exception.Logger;
+//import com.nmbb.oplayer.exception.Logger;
 
 /**
  * 字符串工具类
@@ -346,7 +346,7 @@ public class StringUtils {
 		try {
 			return URLEncoder.encode(url, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			Logger.e(e);
+//			Logger.e(e);
 		}
 		return url;
 	}

@@ -1,4 +1,4 @@
-package com.sonic.videoplayerdemo;
+package com.sonic.videoplayerdemo.util;
 
 import android.content.Context;
 import android.view.View;

@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.sonic.videoplayerdemo.util.PixelUtil;
+
 public class MainActivity extends AppCompatActivity {
 
     private VideoView videoplayer;
